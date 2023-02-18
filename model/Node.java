@@ -1,4 +1,4 @@
-﻿package model;
+package model;
 public class Node {
 
     private Node previous;
@@ -6,12 +6,12 @@ public class Node {
     private int data = 0;
     private int timesSkipped = 0;
 
-    public void setNext(Node node) {
-        this.next = node;
+    public Node getPrev() {
+        return previous;
     }
 
-    public void setPrev(Node node) {
-        this.previous = node;
+    public int getTimesSkipped() {
+        return timesSkipped;
     }
 
     public Node getNext() {
@@ -21,17 +21,16 @@ public class Node {
     public int getData() {
         return data;
     }
+    public void setNext(Node node) {
+        this.next = node;
+    }
+
+    public void setPrev(Node node) {
+        this.previous = node;
+    }
 
     public void setData(int data) {
         this.data = data;
-    }
-
-    public Node getPrev() {
-        return null;
-    }
-
-    public int getTimesSkipped() {
-        return timesSkipped;
     }
 
     public void setTimesSkipped() {

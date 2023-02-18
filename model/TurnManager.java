@@ -1,11 +1,19 @@
-﻿package model;
+package model;
 public class TurnManager {
 
-    private CircularlyDoubleLinkedList list = new CircularlyDoubleLinkedList();
-    private Node currentNode;
+    private final CircularlyDoubleLinkedList list = new CircularlyDoubleLinkedList();
+    private Node currentNode = list.getHead();
 
-    public TurnManager() {
-        currentNode = list.getHead();
+    public boolean isListEmpty() {
+        return list.getHead() == null;
+    }
+
+    public boolean isNextTurnNull() {
+        if(list.isHeadEqualTail()){
+            return true;
+        } else {
+            return currentNode == null;
+        }
     }
 
     public void addTurn() {
@@ -20,9 +28,17 @@ public class TurnManager {
         currentNode = currentNode.getNext();
     }
 
+    public void deleteTurn() {
+        list.deleteNode(currentNode);
+    }
+
     public void skipTurn() {
         currentNode.setTimesSkipped();
-        list.exchangeNodePositions(currentNode, currentNode.getNext());
+        if(list.isSkippedTwice(currentNode)) {
+            deleteTurn();
+        } else {
+            list.exchangeNodePositions(currentNode, currentNode.getNext());
+        }
     }
 
     public int displayTurn() {

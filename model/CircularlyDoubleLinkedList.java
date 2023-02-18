@@ -1,8 +1,20 @@
-﻿package model;
+package model;
 public class CircularlyDoubleLinkedList {
 
     private Node head;
     private Node tail;
+
+    public Node getHead() {
+        return head;
+    }
+
+    public boolean isSkippedTwice(Node node) {
+        return node.getTimesSkipped() == 3;
+    }
+
+    public boolean isHeadEqualTail() {
+        return head == tail;
+    }
 
     public void addNode() {
         Node node = new Node();
@@ -24,11 +36,6 @@ public class CircularlyDoubleLinkedList {
         node2.setData(temp);
     }
 
-    public void isSkippedTwice(Node node) {
-        if (node.getTimesSkipped() == 2) 
-            deleteNode(node);
-    }
-
     public void deleteNode(Node node) {
         if (node == head) {
             head = head.getNext();
@@ -40,13 +47,5 @@ public class CircularlyDoubleLinkedList {
             node.getPrev().setNext(node.getNext());
             node.getNext().setPrev(node.getPrev());
         }
-    }
-
-    public Node getHead() {
-        return head;
-    }
-
-    public Node getTail() {
-        return tail;
     }
 }
